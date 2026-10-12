@@ -1,12 +1,14 @@
-# Build a Vanilla LLM, End to End
+# LLMs from Scratch
 
-A single, self-contained Jupyter notebook that builds a vanilla decoder-only
-Transformer language model from scratch in PyTorch, then actually trains a tiny
-model on a small corpus and samples text from it.
+Two self-contained PyTorch notebooks build small language models, train them on
+toy data, and generate text. Read each from top to bottom in a fresh kernel.
 
-Everything lives in one notebook: [`notebooks/00_build_an_llm_end_to_end.ipynb`](notebooks/00_build_an_llm_end_to_end.ipynb).
+| Notebook | Focus |
+| --- | --- |
+| [00 Build an LLM End to End](notebooks/00_build_an_llm_end_to_end.ipynb) | A vanilla decoder-only Transformer, built from basic operations. |
+| [01 Kimi K3 From Scratch](notebooks/01_kimi_k3_from_scratch.ipynb) | A small educational model inspired by Kimi K3, including recurrent attention, compressed global attention, attention across layers, and sparse experts. |
 
-## What it covers
+## Vanilla Transformer notebook
 
 Every core building block is implemented by hand (no `nn.Linear`, no
 `nn.MultiheadAttention`, no `F.scaled_dot_product_attention` in the final model):
@@ -19,7 +21,7 @@ Every core building block is implemented by hand (no `nn.Linear`, no
 6. **Inference** — KV cache, sampling (temperature / top k / top p), the generation loop, then sample from the trained model
 7. **Alignment (bonus)** — SFT loss with prompt masking and the DPO preference loss
 
-## How each section reads
+### How each section reads
 
 For every component you get:
 
@@ -43,8 +45,13 @@ cd llm-from-scratch-notebook
 python -m venv .venv
 source .venv/bin/activate
 pip install -e ".[notebook]"
-jupyter lab notebooks/00_build_an_llm_end_to_end.ipynb
+jupyter lab
 ```
 
-The training run is intentionally small and finishes in well under a minute on CPU.
-The loss going down is the proof that every block is wired correctly.
+Open either notebook from JupyterLab. Both training runs are intentionally small
+enough for a CPU. The Kimi K3 notebook includes 31 explained code cells, uses
+variable-length examples with left padding, saves executed outputs, and checks
+causality, cached decoding, and padding behavior. It is a teaching
+implementation, not a compatible replacement for the official Kimi K3 model or
+weights. It uses standard PyTorch layers where useful to focus on K3's larger
+architectural ideas.

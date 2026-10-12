@@ -1,7 +1,7 @@
 [project]
 name = "llm-from-scratch-notebook"
 version = "0.1.0"
-description = "A single end-to-end notebook that builds a vanilla decoder-only Transformer LM from scratch"
+description = "Educational notebooks implementing a vanilla Transformer and a tiny Kimi K3-inspired language model"
 requires-python = ">=3.10"
 dependencies = [
     "torch>=2.1",
